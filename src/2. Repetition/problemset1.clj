@@ -3,11 +3,13 @@
 (require '[clojure.test :refer [deftest is run-tests]])
 
 (defn !
-  "Computes the factorial of n using explicit recursion."
+  "Computes the factorial of n using loop/recur."
   [n]
-  (if (zero? n)
-    1
-    (*' n (! (dec n)))))
+  (loop [i 1
+         acum 1]
+    (if (> i n)
+      acum
+      (recur (inc i) (*' i acum)))))
 
 (deftest test-!
   (is (= 1
