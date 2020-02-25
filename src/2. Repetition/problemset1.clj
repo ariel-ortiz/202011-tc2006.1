@@ -5,11 +5,9 @@
 (defn !
   "Computes the factorial of n using loop/recur."
   [n]
-  (loop [i 1
-         acum 1]
-    (if (> i n)
-      acum
-      (recur (inc i) (*' i acum)))))
+  (reduce
+    *'
+    (range 1 (inc n))))
 
 (deftest test-!
   (is (= 1
