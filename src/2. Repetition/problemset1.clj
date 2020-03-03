@@ -17,15 +17,12 @@
 (defn fib
   "Computes the n-th element in the Fibonacci sequence."
   [n]
-  (loop [a 0
-         b 1
-         i 0]
-    (if (= i n)
-      a
-      (recur
-        b
-        (+' a b)
-        (inc i)))))
+  (->>
+    [0 1]
+    (iterate (fn [[a b]] [b (+' a b)]))
+    (drop n)
+    first
+    first))
 
 (deftest test-!
   (is (= 1
