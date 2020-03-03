@@ -14,6 +14,13 @@
   [lst]
   (mapcat #(list % %) lst))
 
+(defn fib
+  "Computes the n-th element in the Fibonacci sequence."
+  [n]
+  (if (<= n 1)
+    n
+    (+' (fib (- n 1)) (fib (- n 2)))))
+
 (deftest test-!
   (is (= 1
          (! 0)))
