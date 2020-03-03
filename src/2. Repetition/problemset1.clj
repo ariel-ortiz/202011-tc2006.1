@@ -21,6 +21,8 @@
     n
     (+' (fib (- n 1)) (fib (- n 2)))))
 
+(def fib (memoize fib))
+
 (deftest test-!
   (is (= 1
          (! 0)))
