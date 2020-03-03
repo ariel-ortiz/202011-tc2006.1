@@ -24,6 +24,26 @@
     first
     first))
 
+(defn delete-all
+  "Delete all the ocurrences of x in lst, which
+  might contain nested lists."
+  [x lst]
+  (cond
+
+    (empty? lst)
+    ()
+
+    (list? (first lst))
+    (cons (delete-all x (first lst))
+          (delete-all x (rest lst)))
+
+    (= x (first lst))
+    (delete-all x (rest lst))
+
+    :else
+    (cons (first lst)
+          (delete-all x (rest lst)))))
+
 (deftest test-!
   (is (= 1
          (! 0)))
