@@ -10,7 +10,8 @@
   exactly divisible by 7 or contains at least one digit 7.
   Otherwise returns false."
   [n]
-  nil)
+  (or (zero? (rem n 7))
+      (contains? (set (seq (str n))) \7)))
 
 ;==========================================================
 (deftest test-lucky-number?

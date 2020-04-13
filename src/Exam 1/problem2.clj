@@ -10,7 +10,11 @@
   only element in lst that has a different evenness from
   the other elements."
   [lst]
-  nil)
+  (if (= 1 (count (filter even? lst)))
+    [(first (drop-while odd? lst))
+     (count (take-while odd? lst))]
+    [(first (drop-while even? lst))
+     (count (take-while even? lst))]))
 
 ;==========================================================
 (deftest test-find-unique-evenness-num
