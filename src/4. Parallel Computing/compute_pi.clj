@@ -17,14 +17,12 @@
   [how-many num-rects]
   (->>
     (range 0 (inc num-rects) (/ num-rects how-many))
-    (partition 2 1)
-    (map #(cons num-rects %))))
+    (partition 2 1)))
 
 (defn parallel-pi
   [how-many num-rects]
-  (let [mid (/ num-rects 2)]
-    (->>
-      (chunks how-many num-rects)
-      (pmap (fn [[num-rects start end]]
-              (compute-pi num-rects start end)))
-      (reduce +))))
+  (->>
+    (chunks how-many num-rects)
+    (pmap (fn [[start end]]
+            (compute-pi num-rects start end)))
+    (reduce +)))
