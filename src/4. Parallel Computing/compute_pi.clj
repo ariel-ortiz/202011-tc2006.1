@@ -13,11 +13,18 @@
             (inc i)
             (+ sum height)))))))
 
+(defn chunks
+  [how-many num-rects]
+  (->>
+    (range 0 (inc num-rects) (/ num-rects how-many))
+    (partition 2 1)
+    (map #(cons num-rects %))))
+
 (defn parallel-pi
-  [num-rects]
+  [how-many num-rects]
   (let [mid (/ num-rects 2)]
     (->>
-      (list [num-rects 0 mid] [num-rects mid num-rects])
+      (chunks how-many num-rects)
       (pmap (fn [[num-rects start end]]
               (compute-pi num-rects start end)))
       (reduce +))))
