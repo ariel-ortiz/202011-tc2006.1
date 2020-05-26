@@ -33,7 +33,7 @@
   ([[x x]]))
 
 (logic/defne anti-twino
-  "Logical function that succeed if lst
+  "Logical function that succeeds if lst
   is a sequence of two items that are
   not the same."
   [lst]
