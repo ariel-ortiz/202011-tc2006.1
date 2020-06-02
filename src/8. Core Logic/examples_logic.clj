@@ -40,4 +40,13 @@
   ([[x y]]
    (logic/!= x y)))
 
+(logic/defne enlisto
+  "Logical function that succeeds if
+  result has the same elements as lst
+  but enlisted."
+  [lst result]
+  ([[] []])
+  ([[head . tail] [[head] . temp]]
+   (enlisto tail temp)))
+
 
